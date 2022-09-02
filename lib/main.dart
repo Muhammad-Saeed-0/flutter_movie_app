@@ -16,7 +16,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
+          backgroundColor: Colors.black,
           appBar: AppBar(
+            backgroundColor: Colors.red,
             title: Center(
               child: Image.asset(
                 'assets/images/img.png',
@@ -26,26 +28,6 @@ class MyApp extends StatelessWidget {
             ),
           ),
           body: const HomePage(),
-        ),
-      ),
-      theme: ThemeData(
-        // Define the default brightness and colors.
-        brightness: Brightness.dark,
-        primaryColor: Colors.lightBlue[800],
-
-        // Define the default font family.
-        fontFamily: 'Georgia',
-
-        // Define the default `TextTheme`. Use this to specify the default
-        // text styling for headlines, titles, bodies of text, and more.
-        textTheme: const TextTheme(
-          headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          headline6: TextStyle(
-            fontSize: 30.0,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 4,
-          ),
-          bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
         ),
       ),
     );

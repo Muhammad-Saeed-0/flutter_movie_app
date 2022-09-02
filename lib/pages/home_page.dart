@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tmdb_api/tmdb_api.dart';
 
 import '../models/api_data.dart';
-import '../models/trending_movies.dart';
+import '../models/return_movies.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,9 +13,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   //
-  late List trendingMoviesList;
-  late List topRateMoviesList;
-  late List tvTopRateList;
+  List trendingMoviesList = [];
+  List topRateMoviesList = [];
+  List tvTopRateList = [];
 
   //
   @override
@@ -30,9 +31,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        TrendingMovies(
-          trendingMoviesList: trendingMoviesList,
-        )
+        ReturnMovies(
+          list: trendingMoviesList,
+          title: 'Trending Movies',
+        ),
+        ReturnMovies(
+          list: topRateMoviesList,
+          title: 'Top Rated Movies',
+        ),
+        ReturnMovies(
+          list: tvTopRateList,
+          title: 'Top Rated TV Series',
+          name: 'original_name',
+        ),
       ],
     );
   }
