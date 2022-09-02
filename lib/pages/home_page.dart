@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/api_data.dart';
+import '../models/trending_movies.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,18 +28,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Center(
-            child: Image.asset(
-              'assets/images/img.png',
-              width: 150,
-              height: 90,
-            ),
-          ),
-        ),
-      ),
+    return ListView(
+      children: [
+        TrendingMovies(
+          trendingMoviesList: trendingMoviesList,
+        )
+      ],
     );
   }
 
