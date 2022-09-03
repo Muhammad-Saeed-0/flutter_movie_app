@@ -4,11 +4,14 @@ import 'models/api_data.dart';
 import 'pages/home_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  Widget? displayWidget;
+  MyApp({Key? key, this.displayWidget}) : super(key: key) {
+    displayWidget ??= HomePage();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-          body: const HomePage(),
+          body: displayWidget,
         ),
       ),
     );

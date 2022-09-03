@@ -41,7 +41,7 @@ class ReturnMovies extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: SizedBox(
-              height: 200,
+              height: 250,
               child: list.isEmpty
                   ? const CircularProgressIndicator()
                   : ListView.builder(
@@ -64,22 +64,21 @@ class ReturnMovies extends StatelessWidget {
                             );
                           },
                           child: SizedBox(
-                            width: 140,
+                            width: 180,
                             child: Column(
                               children: [
                                 Container(
-                                  height: 190,
+                                  height: 250,
+                                  width: 160,
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image: NetworkImage(
                                         "https://image.tmdb.org/t/p/w500${list[i][keyOfValue]}",
                                       ),
+                                      fit: BoxFit.fill,
                                     ),
                                   ),
                                 ),
-                                // TextDesign.subTitle(
-                                //   text: list[i]['title'] ?? 'No Title',
-                                // ),
                               ],
                             ),
                           ),
