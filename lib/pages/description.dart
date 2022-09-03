@@ -3,6 +3,10 @@ import 'package:movie_app/utilities/text_design.dart';
 
 class Description extends StatelessWidget {
   String? name, description, bannerUrl, posterUrl, vote, launchOn;
+  var no_date = const Text(
+    'No Date',
+    style: TextStyle(color: Colors.yellow),
+  );
 
   Description(
       {Key? key,
@@ -38,15 +42,39 @@ class Description extends StatelessWidget {
                 child: Container(
                   color: Colors.black,
                   padding: const EdgeInsets.all(10),
-                  child: Text(
-                    'Rating: $vote ⭐',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      decoration: TextDecoration.none,
-                    ),
+                  child: TextDesign.subTitle(
+                    text: 'Rating: $vote ⭐',
                   ),
                 ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextDesign.subTitle(text: name ?? 'No Title'),
+              TextDesign.subTitle(
+                  text: "Release On: ${launchOn ?? '  ~~ No Date ~~'}"),
+              Row(
+                children: [
+                  Image.network(
+                    posterUrl!,
+                    height: 200,
+                    width: 100,
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextDesign.subTitle(
+                        text: description ?? 'No Description',
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

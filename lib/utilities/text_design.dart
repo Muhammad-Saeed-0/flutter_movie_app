@@ -28,6 +28,7 @@ class TextDesign extends StatelessWidget {
         color: color,
         fontSize: size,
         fontFamily: 'BreeSerif',
+        decoration: TextDecoration.none,
       ),
     );
   }

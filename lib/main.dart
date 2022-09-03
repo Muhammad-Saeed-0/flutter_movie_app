@@ -18,8 +18,13 @@ class MyApp extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.black,
           appBar: AppBar(
+            leading: Icon(
+              Icons.menu,
+              color: Colors.white,
+            ),
             backgroundColor: Colors.red,
             title: Center(
+              widthFactor: 1.8,
               child: Image.asset(
                 'assets/images/img.png',
                 width: 150,
