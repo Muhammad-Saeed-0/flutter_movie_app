@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/main.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 import '../models/api_data.dart';
@@ -40,30 +41,32 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        ReturnMoviesGenre(genresLis: genresLis),
-        ReturnMovies(
-          list: nowPlayingMoviesList,
-          title: 'Now Playing Movies',
-        ),
-        ReturnMovies(
-          list: trendingMoviesList,
-          title: 'Trending Movies',
-        ),
-        ReturnMovies(
-          list: topRateMoviesList,
-          title: 'Top Rated Movies',
-        ),
-        ReturnMovies(
-          list: popularMoviesList,
-          title: 'Popular Movies',
-        ),
-        ReturnMovies(
-          list: tvTopRateList,
-          title: 'Top Rated TV Series',
-        ),
-      ],
+    return MyApp(
+      displayWidget: ListView(
+        children: [
+          ReturnMoviesGenre(genresLis: genresLis),
+          ReturnMovies(
+            list: nowPlayingMoviesList,
+            title: 'Now Playing Movies',
+          ),
+          ReturnMovies(
+            list: trendingMoviesList,
+            title: 'Trending Movies',
+          ),
+          ReturnMovies(
+            list: topRateMoviesList,
+            title: 'Top Rated Movies',
+          ),
+          ReturnMovies(
+            list: popularMoviesList,
+            title: 'Popular Movies',
+          ),
+          ReturnMovies(
+            list: tvTopRateList,
+            title: 'Top Rated TV Series',
+          ),
+        ],
+      ),
     );
   }
 
