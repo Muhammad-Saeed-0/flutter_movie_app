@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/authentication/welcome.dart';
-import 'package:tmdb_api/tmdb_api.dart';
-import 'models/api_data.dart';
-import 'pages/home_page.dart';
+import 'package:movie_app/pages/home_page.dart';
 
 void main() {
   runApp(MyApp());

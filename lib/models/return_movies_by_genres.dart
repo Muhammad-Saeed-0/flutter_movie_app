@@ -16,6 +16,24 @@ class ReturnMoviesByGenre extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: FloatingActionButton(
+                  backgroundColor: Colors.white,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+            ],
+          ),
           // TextDesign(text: title),
           Padding(
             padding: const EdgeInsets.all(10.0),

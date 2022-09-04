@@ -40,6 +40,23 @@ class Description extends StatelessWidget {
                   ),
                 ),
                 Positioned(
+                  top: 10,
+                  left: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: FloatingActionButton(
+                      backgroundColor: Colors.black,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
                   bottom: 10,
                   left: 20,
                   child: Container(
