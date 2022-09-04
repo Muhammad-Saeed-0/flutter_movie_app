@@ -7,15 +7,21 @@ import '../utilities/text_design.dart';
 import 'buttons.dart';
 
 class LogIn extends StatefulWidget {
-  String? userName, password;
+  String? signUpUserName, signUpPassword;
 
-  LogIn({Key? key, this.userName, this.password}) : super(key: key);
+  LogIn({Key? key, this.signUpUserName, this.signUpPassword}) : super(key: key);
 
   @override
   State<LogIn> createState() => _LogInState();
 }
 
 class _LogInState extends State<LogIn> {
+  var passwordController = TextEditingController();
+  var userNameController = TextEditingController();
+  final GlobalKey<FormState> _logInKey = GlobalKey<FormState>();
+  bool obscureText = true;
+  var eye = Icons.visibility;
+
   @override
   Widget build(BuildContext context) {
     return MyApp(
@@ -38,76 +44,123 @@ class _LogInState extends State<LogIn> {
                     ],
                   ),
                 ),
-                Container(
-                  width: 270,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.white,
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(4.0),
-                    child: TextField(
-                      cursorColor: Colors.red,
-                      decoration: InputDecoration(
-                        disabledBorder: InputBorder.none,
-                        border: InputBorder.none,
-                        hintText: 'Enter Your UserName',
-                        icon: Icon(
-                          Icons.person_outlined,
+                Form(
+                  key: _logInKey,
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 270,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.white,
                         ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    width: 270,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.white,
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: TextField(
-                        cursorColor: Colors.red,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          disabledBorder: InputBorder.none,
-                          border: InputBorder.none,
-                          hintText: 'Enter Your Password',
-                          icon: Icon(
-                            Icons.lock,
-                          ),
-                          suffixIcon: Icon(
-                            Icons.visibility,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 2),
-                  child: Buttons(
-                    textButton: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return HomePage();
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: TextFormField(
+                            controller: userNameController,
+                            cursorColor: Colors.red,
+                            decoration: const InputDecoration(
+                              disabledBorder: InputBorder.none,
+                              border: InputBorder.none,
+                              hintText: 'Enter Your UserName',
+                              icon: Icon(
+                                Icons.person_outlined,
+                              ),
+                            ),
+                            validator: (String? value) {
+                              if (widget.signUpUserName == null ||
+                                  widget.signUpPassword == null) {
+                                return "Sign Up first";
+                              } else if (value!.isEmpty) {
+                                return "UserName must have a value";
+                              } else if (value.length < 3) {
+                                return "UserName must have a 3 or more character";
+                              } else if (value != widget.signUpUserName) {
+                                return "UserName Don't match";
+                              }
                             },
                           ),
-                        );
-                      },
-                      child: const Text(
-                        'LogIn',
-                        style: TextStyle(fontSize: 20),
+                        ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(
+                          width: 270,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: Colors.white,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: TextFormField(
+                              controller: passwordController,
+                              keyboardType: TextInputType.visiblePassword,
+                              cursorColor: Colors.red,
+                              obscureText: obscureText,
+                              decoration: InputDecoration(
+                                disabledBorder: InputBorder.none,
+                                border: InputBorder.none,
+                                hintText: 'Enter Your Password',
+                                icon: const Icon(
+                                  Icons.lock,
+                                ),
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      if (obscureText) {
+                                        obscureText = false;
+                                        eye = Icons.visibility_off;
+                                      } else {
+                                        obscureText = true;
+                                        eye = Icons.visibility;
+                                      }
+                                    });
+                                  },
+                                  icon: Icon(eye),
+                                ),
+                              ),
+                              validator: (String? value) {
+                                if (widget.signUpUserName == null ||
+                                    widget.signUpPassword == null) {
+                                  return "Sign Up first";
+                                } else if (value!.isEmpty) {
+                                  return "Password must have a value";
+                                } else if (value.length < 6) {
+                                  return "Password must have a 6 or more character/numbers";
+                                } else if (value != widget.signUpPassword) {
+                                  return "Password Don't match";
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 2),
+                        child: Buttons(
+                          textButton: TextButton(
+                            onPressed: () {
+                              if (_logInKey.currentState!.validate()) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return HomePage();
+                                    },
+                                  ),
+                                );
+                              }
+                            },
+                            child: const Text(
+                              'LogIn',
+                              style: TextStyle(fontSize: 20),
+                            ),
 
-                      // backgroundColor: Colors.white,
-                    ),
+                            // backgroundColor: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 TextButton(
@@ -121,8 +174,8 @@ class _LogInState extends State<LogIn> {
                       ),
                     );
                   },
-                  child: Text(
-                    "Dont't have an account? Sign Up",
+                  child: const Text(
+                    "Don't have an account? Sign Up",
                     style: TextStyle(
                       fontSize: 17,
                     ),
