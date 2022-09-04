@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/models/return_movies_by_genres.dart';
-import 'package:movie_app/pages/description.dart';
 import 'package:movie_app/pages/home_page.dart';
-import 'package:movie_app/utilities/text_design.dart';
-
-import '../pages/get_movies_with_genres.dart';
-import 'api_data.dart';
 
 class ReturnMoviesGenre extends StatelessWidget {
   List genresLis = [];
@@ -33,7 +27,7 @@ class ReturnMoviesGenre extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => MoviesByGenres(
+                                builder: (context) => HomePage(
                                   genre: genresLis[i]['name'],
                                 ),
                               ),

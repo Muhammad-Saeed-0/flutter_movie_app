@@ -3,7 +3,7 @@ import 'package:movie_app/authentication/login.dart';
 import 'package:movie_app/authentication/signUp.dart';
 import 'package:movie_app/utilities/text_design.dart';
 
-import 'buttons.dart';
+import '../utilities/buttons.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({Key? key}) : super(key: key);

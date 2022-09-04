@@ -4,7 +4,7 @@ import 'package:movie_app/main.dart';
 import 'package:movie_app/pages/home_page.dart';
 
 import '../utilities/text_design.dart';
-import 'buttons.dart';
+import '../utilities/buttons.dart';
 
 class LogIn extends StatefulWidget {
   String? signUpUserName, signUpPassword;

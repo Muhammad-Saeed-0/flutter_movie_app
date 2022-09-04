@@ -13,10 +13,10 @@ class TextDesign extends StatelessWidget {
   TextDesign.subTitle({Key? key, required this.text}) : super(key: key) {
     size = 18;
 
-    if (text != 'No Title') {
-      color = Colors.white;
-    } else {
+    if (text == 'No Title' || text == '  ~~ No Date ~~') {
       color = Colors.yellow;
+    } else {
+      color = Colors.white;
     }
   }
 

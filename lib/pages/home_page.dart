@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   List popularMoviesList = [];
   List tvTopRateList = [];
   List genresLis = [];
+  List moviesList = [];
 
   //
   @override
@@ -37,6 +38,7 @@ class _HomePageState extends State<HomePage> {
     loadPopularMovies();
     loadTVTopRate();
     loadGenresMovies();
+    loadMoviesList();
   }
 
   @override
@@ -45,6 +47,10 @@ class _HomePageState extends State<HomePage> {
       displayWidget: ListView(
         children: [
           ReturnMoviesGenre(genresLis: genresLis),
+          ReturnMovies(
+            list: moviesList,
+            title: '${widget.genre} Movies',
+          ),
           ReturnMovies(
             list: nowPlayingMoviesList,
             title: 'Now Playing Movies',
@@ -81,6 +87,7 @@ class _HomePageState extends State<HomePage> {
   loadTrendingMovies() async {
     Map trendingMovies = await ApiData.tmdbLogs.v3.trending
         .getTrending(mediaType: MediaType.movie);
+    print(trendingMovies['results']);
 
     setState(() {
       trendingMoviesList = trendingMovies['results'];
@@ -116,6 +123,15 @@ class _HomePageState extends State<HomePage> {
 
     setState(() {
       genresLis = genres['genres'];
+    });
+  }
+
+  loadMoviesList() async {
+    Map movies =
+        await ApiData.tmdbLogs.v3.discover.getMovies(withGenres: widget.genre);
+
+    setState(() {
+      moviesList = movies['results'];
     });
   }
 }
